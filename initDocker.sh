@@ -14,6 +14,7 @@ apt-get -y install procmail
 maildirmake.dovecot /etc/skel/Maildir
 maildirmake.dovecot /etc/skel/Maildir/.Archive
 maildirmake.dovecot /etc/skel/Maildir/.Sent
+maildirmake.dovecot /etc/skel/Maildir/.Trash
 chmod 700 /etc/skel/Maildir/
 
 useradd -p $(perl -e'print crypt("sysadmin", "sysadmin")') -m -s /bin/bash -N sysadmin
@@ -34,7 +35,10 @@ sed -i 's/#ssl_key = .*/ssl_key = <\/etc\/ssl\/private\/mail.key/' /etc/dovecot/
 postconf -e "myorigin = wikifm.org"
 postconf -e "myhostname=mail.wikifm.org"
 postconf -e "relay_domains = wikifm.org"
+postconf -e "mydestination = wikifm.org"
 
+postconf -e "home_mailbox = Maildir/"
+postconf -e "mailbox_command = "
 
 postconf -e 'smtpd_sasl_type = dovecot'
 postconf -e 'smtpd_sasl_auth_enable = yes'
