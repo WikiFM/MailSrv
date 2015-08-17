@@ -2,7 +2,7 @@
 
 chmod +x /run.sh
 
-debconf-set-selections <<< "postfix postfix/mailname string mail.wikifm.org"
+debconf-set-selections <<< "postfix postfix/mailname string mail.wikitolearn.org"
 debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
 
 apt-get update
@@ -32,10 +32,10 @@ sed -i 's/ssl = no/ssl = required/' /etc/dovecot/conf.d/10-ssl.conf
 sed -i 's/#ssl_cert = .*/ssl_cert = <\/etc\/ssl\/certs\/mail.crt/' /etc/dovecot/conf.d/10-ssl.conf
 sed -i 's/#ssl_key = .*/ssl_key = <\/etc\/ssl\/private\/mail.key/' /etc/dovecot/conf.d/10-ssl.conf
 
-postconf -e "myorigin = wikifm.org"
-postconf -e "myhostname=mail.wikifm.org"
-postconf -e "relay_domains = wikifm.org"
-postconf -e "mydestination = wikifm.org"
+postconf -e "myorigin = wikitolearn.org"
+postconf -e "myhostname=mail.wikitolearn.org"
+postconf -e "relay_domains = wikitolearn.org wikifm.org"
+postconf -e "mydestination = wikitolearn.org wikifm.org"
 
 postconf -e "home_mailbox = Maildir/"
 postconf -e "mailbox_command = "
