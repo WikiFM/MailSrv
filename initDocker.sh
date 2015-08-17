@@ -72,3 +72,5 @@ submission inet n       -       -       -       -       smtpd
   -o smtpd_sasl_path=private/auth
 
 EOF
+
+rm -f /var/cache/apt/archives/*deb
