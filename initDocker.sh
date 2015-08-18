@@ -59,6 +59,8 @@ postconf -e 'alias_database = hash:/etc/aliases'
 
 postconf -e 'local_recipient_maps = proxy:unix:passwd.byname $alias_maps'
 
+postconf -e 'mynetworks = 127.0.0.0/8 172.17.0.0/16 [::ffff:127.0.0.0]/104 [::1]/128'
+
 cat <<EOF >> /etc/postfix/master.cf
 
 submission inet n       -       -       -       -       smtpd
