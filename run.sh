@@ -1,6 +1,15 @@
 #!/bin/bash
 
-if [[ ! -f /etc/ssl/private/mail.key ]] || [[ ! -f /etc/ssl/certs/mail.crt ]] ; then
+if [ -f /certs/mail.crt ] ; then
+ echo "Copy /certs/mail.crt"
+ cp /certs/mail.crt /etc/ssl/certs/mail.crt
+fi
+if [ -f /certs/mail.key ] ; then
+ echo "Copy /certs/mail.key"
+ cp /certs/mail.key /etc/ssl/private/mail.key
+fi
+
+if [[ ! -f /etc/ssl/private/mail.key ]] ; then
  rm -f /etc/ssl/private/mail.key
  rm -f /etc/ssl/certs/mail.crt
 
