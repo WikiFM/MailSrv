@@ -21,6 +21,11 @@ if [[ ! -f /etc/ssl/private/mail.key ]] ; then
  rm server.csr
 fi
 
+if [[ "$RELAYHOST" != "" ]] ; then
+ sed  -i '/relayhost/d' /etc/postfix/main.cf
+ echo "relayhost = "$RELAYHOST >> /etc/postfix/main.cf
+fi
+
 /etc/init.d/postfix start
 /etc/init.d/postfix stop
 
